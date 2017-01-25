@@ -54,7 +54,6 @@ public class GameLoop {
 
 			// Update fps and ups if one second has passed
 			if (deltaDisplay >= 1000000000) {
-				System.out.println("fps:" + framecount + " ups:" + updatecount);
 				framecount = 0;
 				updatecount = 0;
 				deltaDisplay = 0;
