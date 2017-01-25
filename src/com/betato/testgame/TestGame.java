@@ -22,7 +22,7 @@ public class TestGame extends GameWindow{
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onUpdate(InputListener inputListener) {
 		if (acc < 9999){
 			acc++;
 		} else {

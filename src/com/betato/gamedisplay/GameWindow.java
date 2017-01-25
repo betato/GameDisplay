@@ -35,7 +35,8 @@ public abstract class GameWindow extends Canvas{
 	}
 	
 	public void update() {
-		onUpdate();
+		onUpdate(inputListener);
+		inputListener.clear();
 	}
 	
 	public void render() {
@@ -59,7 +60,7 @@ public abstract class GameWindow extends Canvas{
 	abstract public void onInit();
 
 	// Called on update
-	abstract public void onUpdate(/* Add mouse and keyboard inputs */);
+	abstract public void onUpdate(InputListener inputListener);
 
 	// Called on render
 	abstract public void onRender(Graphics g);
