@@ -11,12 +11,12 @@ public abstract class GameWindow extends Canvas implements Game {
 	
 	public int fps, ups = 0;
 	
-	public GameWindow(GameLoop gameLoop) {
+	public void start(GameLoop gameLoop) {
 		this.gameLoop = gameLoop;
 		gameLoop.run(this);
 	}
 	
-	public void close() {
+	public void stop() {
 		gameLoop.running = false;
 		onExit();
 	}
