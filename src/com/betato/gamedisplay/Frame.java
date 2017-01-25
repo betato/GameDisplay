@@ -16,7 +16,6 @@ public class Frame extends JFrame{
 	}
 	
 	public void createFrame(GameWindow gameWindow) {
-		gameWindow.frame = this;
 		add(gameWindow);
 		pack();
 		setResizable(false);
