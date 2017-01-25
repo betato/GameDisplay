@@ -14,8 +14,8 @@ public abstract class GameWindow extends Canvas implements Game {
 	
 	public int fps, ups = 0;
 	
-	public void start(GameLoop gameLoop) {
-		new Frame(300, 300, "Title", this);
+	public void start(GameLoop gameLoop, Frame frame) {
+		frame.createFrame(this);
 		this.gameLoop = gameLoop;
 		gameLoop.run(this);
 	}
