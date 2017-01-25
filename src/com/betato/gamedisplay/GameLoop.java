@@ -1,7 +1,7 @@
 package com.betato.gamedisplay;
 
 public class GameLoop {
-	
+		
 	private int targetFps = 60;
 	private int nanoFps = 1000000000 / targetFps;
 	private int targetUps = 60;
@@ -17,14 +17,17 @@ public class GameLoop {
 	}
 	
 	// Runs the GameLoop
-	public void run() {
+	public void run(Game game) {
+		
 		long startTime = System.nanoTime();
 		long deltaFps = 0;
 		long deltaUps = 0;
 		long deltaDisplay = 0;
 		int framecount = 0;
 		int updatecount = 0;
-
+		
+		game.init();
+		
 		while (running) {
 			// Get current time
 			long currentTime = System.nanoTime();
@@ -39,7 +42,7 @@ public class GameLoop {
 			// Render if target time has been reached
 			if (deltaFps >= nanoFps) {
 				// Render
-				
+				game.render();
 				framecount++;
 				deltaFps = 0;
 			}
@@ -47,13 +50,14 @@ public class GameLoop {
 			// Update if target time has been reached
 			if (deltaUps >= nanoUps) {
 				// Update
-				
+				game.update();
 				updatecount++;
 				deltaUps = 0;
 			}
 
 			// Update fps and ups if one second has passed
 			if (deltaDisplay >= 1000000000) {
+				game.updateFps(framecount, updatecount);
 				framecount = 0;
 				updatecount = 0;
 				deltaDisplay = 0;
