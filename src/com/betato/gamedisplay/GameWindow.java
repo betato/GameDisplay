@@ -4,14 +4,18 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import javax.swing.JFrame;
+
 public abstract class GameWindow extends Canvas implements Game {
 	
 	private static final long serialVersionUID = 1L;
 	private GameLoop gameLoop;
+	protected JFrame frame;
 	
 	public int fps, ups = 0;
 	
 	public void start(GameLoop gameLoop) {
+		new Frame(300, 300, "Title", this);
 		this.gameLoop = gameLoop;
 		gameLoop.run(this);
 	}
