@@ -21,6 +21,8 @@ public abstract class GameWindow extends Canvas{
 		addMouseListener(inputListener);
 		addMouseMotionListener(inputListener);
 		addMouseWheelListener(inputListener);
+		frame.addWindowListener(inputListener);
+		frame.addWindowFocusListener(inputListener);
 		
 		gameLoop.run(this);
 	}
