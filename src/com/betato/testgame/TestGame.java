@@ -6,11 +6,19 @@ import java.awt.Graphics;
 import com.betato.gamedisplay.Frame;
 import com.betato.gamedisplay.GameLoop;
 import com.betato.gamedisplay.GameWindow;
+import com.betato.gamedisplay.InputListener;
 
 public class TestGame extends GameWindow{
 	private static final long serialVersionUID = 1L;
-
+	
+	public static void main(String[] args) {
+		new TestGame();
+	}
+	
 	int acc;
+	int timesUp = 0;
+	int timesDown = 0;
+	boolean keyState;
 	
 	public TestGame() {
 		start(new GameLoop(60, 120), new Frame(300, 300, "Title"));
@@ -28,6 +36,14 @@ public class TestGame extends GameWindow{
 		} else {
 			acc = 0;
 		}
+		
+		keyState = inputListener.keyState[65];
+		if (inputListener.keyUp[65]) {
+			timesUp++;
+		}
+		if (inputListener.keyDown[65]) {
+			timesDown++;
+		}
 	}
 
 	@Override
@@ -37,6 +53,7 @@ public class TestGame extends GameWindow{
 		g.setColor(Color.black);
 		g.drawString("fps:" + fps + " ups:" + ups, 10, 10);
 		g.drawString("lalala:" + acc, 10, 30);
+		g.drawString("state:" + keyState + " up:" + timesUp + " Down: " + timesDown, 10, 50);
 	}
 
 	@Override
