@@ -42,8 +42,12 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		keyDown[e.getKeyCode()] = true;
-		keyState[e.getKeyCode()] = true;
+		// Avoid key repeat
+		// Set keyDown if key is released
+		if (!keyState[e.getKeyCode()]) {
+			keyDown[e.getKeyCode()] = true;
+			keyState[e.getKeyCode()] = true;
+		}
 	}
 
 	@Override
