@@ -11,29 +11,37 @@ import java.awt.event.MouseWheelListener;
 
 public class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener{
 	
+	public static final int NUM_KEYS = 223;
+	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons();
+	
 	// Keyboard
-	public boolean[] keyState = new boolean[256];
-	public boolean[] keyDown = new boolean[256];
-	public boolean[] keyUp = new boolean[256];
+	public boolean[] keyState = new boolean[NUM_KEYS];
+	public boolean[] keyDown = new boolean[NUM_KEYS];
+	public boolean[] keyUp = new boolean[NUM_KEYS];
 	
 	// Mouse
 	public int mouseX;
 	public int mouseY;
 	public int mouseWheel;
-	public boolean[] mouseState = new boolean[MouseInfo.getNumberOfButtons()];
-	public boolean[] mouseDown = new boolean[MouseInfo.getNumberOfButtons()];
-	public boolean[] mouseUp = new boolean[MouseInfo.getNumberOfButtons()];
+	public boolean[] mouseState = new boolean[NUM_BUTTONS];
+	public boolean[] mouseDown = new boolean[NUM_BUTTONS];
+	public boolean[] mouseUp = new boolean[NUM_BUTTONS];
+	public boolean mouseMoved = false;
+	public boolean mouseDragged = false;
+	public boolean mouseInsideWindow = true;
 	
 	public void clear() {
 		// Clear keyboard
-		for (int i = 0; i < keyUp.length; i++)
+		for (int i = 0; i < NUM_KEYS; i++)
 		{
 			keyDown[i] = false;
 			keyUp[i] = false;
 		}
 		
 		// Clear mouse
-		for (int i = 0; i < mouseUp.length; i++)
+		mouseMoved = false;
+		mouseDragged = false;
+		for (int i = 0; i <NUM_BUTTONS; i++)
 		{
 			mouseDown[i] = false;
 			mouseUp[i] = false;
@@ -69,14 +77,16 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseMoved = true;
+		mouseDragged = true;
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseMoved = true;
+		mouseDragged = false;
+		mouseX = e.getX();
+		mouseY = e.getY();
 	}
 
 	@Override
@@ -87,14 +97,12 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseInsideWindow = true;
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseInsideWindow = false;
 	}
 
 	@Override
