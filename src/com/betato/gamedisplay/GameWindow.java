@@ -1,6 +1,8 @@
 package com.betato.gamedisplay;
 
 import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 public abstract class GameWindow extends Canvas implements Game {
 	
@@ -26,7 +28,15 @@ public abstract class GameWindow extends Canvas implements Game {
 	
 	@Override
 	public void render() {
-		
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs == null) {
+			this.createBufferStrategy(2);
+			return;
+		}
+		Graphics g = bs.getDrawGraphics();
+		// Render stuff here
+		g.dispose();
+		bs.show();
 	}
 	
 	@Override
