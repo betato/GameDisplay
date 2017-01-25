@@ -6,7 +6,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-public abstract class GameWindow extends Canvas implements Game {
+public abstract class GameWindow extends Canvas{
 	
 	private static final long serialVersionUID = 1L;
 	private GameLoop gameLoop;
@@ -25,17 +25,14 @@ public abstract class GameWindow extends Canvas implements Game {
 		onExit();
 	}
 	
-	@Override
 	public void init() {
 		onInit();
 	}
 	
-	@Override
 	public void update() {
 		onUpdate();
 	}
 	
-	@Override
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -48,7 +45,6 @@ public abstract class GameWindow extends Canvas implements Game {
 		bs.show();
 	}
 	
-	@Override
 	public void updateFps(int fps, int ups) {
 		this.fps = fps;
 		this.ups = ups;

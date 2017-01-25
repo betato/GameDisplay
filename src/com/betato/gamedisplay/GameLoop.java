@@ -17,7 +17,7 @@ public class GameLoop {
 	}
 	
 	// Runs the GameLoop
-	public void run(Game game) {
+	public void run(GameWindow game) {
 		
 		long startTime = System.nanoTime();
 		long deltaFps = 0;
