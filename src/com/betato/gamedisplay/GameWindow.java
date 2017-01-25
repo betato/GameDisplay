@@ -16,14 +16,19 @@ public abstract class GameWindow extends Canvas implements Game {
 		gameLoop.run(this);
 	}
 	
+	public void close() {
+		gameLoop.running = false;
+		onExit();
+	}
+	
 	@Override
 	public void init() {
-		
+		onInit();
 	}
 	
 	@Override
 	public void update() {
-		
+		onUpdate();
 	}
 	
 	@Override
@@ -34,7 +39,7 @@ public abstract class GameWindow extends Canvas implements Game {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		// Render stuff here
+		onRender(g);
 		g.dispose();
 		bs.show();
 	}
@@ -44,4 +49,16 @@ public abstract class GameWindow extends Canvas implements Game {
 		this.fps = fps;
 		this.ups = ups;
 	}
+	
+	// Called on initialization
+	abstract public void onInit();
+
+	// Called on update
+	abstract public void onUpdate(/* Add mouse and keyboard inputs */);
+
+	// Called on render
+	abstract public void onRender(Graphics g);
+
+	// Called on GameWindow exit
+	abstract public void onExit();
 }
