@@ -11,12 +11,7 @@ import javax.swing.JFrame;
 public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	private int width;
-	private int height;
-	
 	public Frame(int width, int height, String title, boolean resizable, boolean fullscreen, boolean hideCursor) {
-		this.width = width;
-		this.height = height;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);
 		
@@ -43,14 +38,6 @@ public class Frame extends JFrame{
 			// Set default cursor
 			getContentPane().setCursor(Cursor.getDefaultCursor());
 		}
-	}
-	
-	public void setWindowSize(int width, int height) {
-		// Update default size
-		this.width = width;
-		this.height = height;
-		// Resize window
-		setSize(width, height);
 	}
 	
 	public void setContentSize(int width, int height) {
