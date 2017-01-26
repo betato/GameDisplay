@@ -21,7 +21,7 @@ public class TestGame extends GameWindow{
 	boolean keyState;
 	
 	public TestGame() {
-		start(new GameLoop(60, 120), new Frame(300, 300, "Title"));
+		start(new GameLoop(60, 120), new Frame(300, 300, "Title", false, false));
 	}
 	
 	@Override
