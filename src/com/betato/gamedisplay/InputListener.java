@@ -11,6 +11,8 @@ import java.awt.event.MouseWheelListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, WindowListener, WindowFocusListener{
 	
@@ -18,11 +20,13 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons();
 	
 	// Keyboard
+	Queue<KeyEvent> keyPresses = new ArrayDeque<KeyEvent>();
 	public boolean[] keyState = new boolean[NUM_KEYS];
 	public boolean[] keyDown = new boolean[NUM_KEYS];
 	public boolean[] keyUp = new boolean[NUM_KEYS];
 	
 	// Mouse
+	Queue<MouseEvent> mouseClicks = new ArrayDeque<MouseEvent>();
 	public int mouseX;
 	public int mouseY;
 	public int mouseWheel;
@@ -42,6 +46,7 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	
 	public void clear() {
 		// Clear keyboard
+		keyPresses.clear();
 		for (int i = 0; i < NUM_KEYS; i++)
 		{
 			keyDown[i] = false;
@@ -49,6 +54,7 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 		}
 		
 		// Clear mouse
+		mouseClicks.clear();
 		mouseMoved = false;
 		mouseDragged = false;
 		for (int i = 0; i <NUM_BUTTONS; i++)
@@ -76,8 +82,7 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		keyPresses.offer(e);
 	}
 
 	@Override
@@ -101,8 +106,7 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseClicks.offer(e);
 	}
 
 	@Override
