@@ -9,13 +9,15 @@ public abstract class GameWindow extends Canvas{
 	private static final long serialVersionUID = 1L;
 	private GameLoop gameLoop;
 	private InputListener inputListener;
+	public Frame frame;
 	
 	public int fps, ups = 0;
 	
 	public void start(GameLoop gameLoop, Frame frame) {
-		frame.createFrame(this);
 		this.gameLoop = gameLoop;
+		this.frame = frame;
 		
+		frame.add(this);
 		inputListener = new InputListener();
 		addKeyListener(inputListener);
 		addMouseListener(inputListener);
@@ -24,6 +26,7 @@ public abstract class GameWindow extends Canvas{
 		frame.addWindowListener(inputListener);
 		frame.addWindowFocusListener(inputListener);
 		
+		frame.setVisible(true);
 		gameLoop.run(this);
 	}
 	

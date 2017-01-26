@@ -27,16 +27,11 @@ public class Frame extends JFrame{
 			setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		}
 		if (hideCursor) {
-			hideCursor(true);
+			setCursorHidden(true);
 		}
 	}
 	
-	public void createFrame(GameWindow gameWindow) {
-		add(gameWindow);
-		setVisible(true);
-	}
-	
-	public void hideCursor(boolean hideCursor){ 			
+	public void setCursorHidden(boolean hideCursor){ 			
 		if (hideCursor) { 			
 			// Create a new blank cursor
 			BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
