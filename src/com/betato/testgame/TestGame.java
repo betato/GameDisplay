@@ -23,7 +23,8 @@ public class TestGame extends GameWindow{
 	boolean fullscreen = true;
 	
 	public TestGame() {
-		start(new GameLoop(60, 120), new Frame(this, "Title", 300, 300, true, false, false, false));
+		Frame frame = new Frame(this, "Title", 300, 300, true, false, false, false);
+		start(new GameLoop(60, 120), frame, 2);
 	}
 	
 	@Override

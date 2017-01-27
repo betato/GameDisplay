@@ -10,13 +10,15 @@ public abstract class GameWindow extends Canvas{
 	private GameLoop gameLoop;
 	private InputListener inputListener;
 	private FrameListener frameListener;
+	private int frameBuffers;
 	public Frame frame;
 	
 	public int fps, ups = 0;
 	
-	public void start(GameLoop gameLoop, Frame frame) {
+	public void start(GameLoop gameLoop, Frame frame, int frameBuffers) {
 		this.gameLoop = gameLoop;
 		this.frame = frame;
+		this.frameBuffers = frameBuffers;
 		
 		inputListener = new InputListener();
 		frameListener = new FrameListener(this);
@@ -51,7 +53,7 @@ public abstract class GameWindow extends Canvas{
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
-			this.createBufferStrategy(2);
+			this.createBufferStrategy(frameBuffers);
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
