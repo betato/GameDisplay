@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.betato.gamedisplay.Frame;
+import com.betato.gamedisplay.FrameListener;
 import com.betato.gamedisplay.GameLoop;
 import com.betato.gamedisplay.GameWindow;
 import com.betato.gamedisplay.InputListener;
@@ -32,7 +33,7 @@ public class TestGame extends GameWindow{
 	}
 
 	@Override
-	public void onUpdate(InputListener inputListener) {
+	public void onUpdate(InputListener inputListener, FrameListener frameListener) {
 		if (acc < 9999){
 			acc++;
 		} else {
@@ -60,6 +61,7 @@ public class TestGame extends GameWindow{
 		g.drawString("fps:" + fps + " ups:" + ups, 10, 10);
 		g.drawString("lalala:" + acc, 10, 30);
 		g.drawString("state:" + keyState + " up:" + timesUp + " Down: " + timesDown, 10, 50);
+		g.fillOval(200, 200, 8, 8);
 	}
 
 	@Override

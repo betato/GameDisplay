@@ -43,7 +43,7 @@ public abstract class GameWindow extends Canvas{
 	}
 	
 	public void update() {
-		onUpdate(inputListener);
+		onUpdate(inputListener, frameListener);
 		inputListener.clear();
 		frameListener.clear();
 	}
@@ -69,7 +69,7 @@ public abstract class GameWindow extends Canvas{
 	abstract public void onInit();
 
 	// Called on update
-	abstract public void onUpdate(InputListener inputListener);
+	abstract public void onUpdate(InputListener inputListener, FrameListener frameListener);
 
 	// Called on render
 	abstract public void onRender(Graphics g);
