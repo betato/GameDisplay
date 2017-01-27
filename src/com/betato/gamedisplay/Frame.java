@@ -13,14 +13,15 @@ public class Frame extends JFrame{
 	
 	private GameWindow gameWindow;
 	
-	public Frame(GameWindow gameWindow, int width, int height, String title, boolean resizable, boolean fullscreen, boolean hideCursor) {
-		this.gameWindow = gameWindow;
-		add(gameWindow);
+	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize, boolean resizable, boolean fullscreen, boolean hideCursor) {
+		setup(gameWindow, title);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle(title);
+		if (useContentSize) {
+			setContentSize(width, height);
+		} else {
+			setSize(width, height);
+		}
 		
-		setSize(width, height);
 		setResizable(resizable);
 		if (fullscreen) {
 			setUndecorated(true);
@@ -29,6 +30,21 @@ public class Frame extends JFrame{
 		if (hideCursor) {
 			setCursorHidden(true);
 		}
+	}
+	
+	public Frame(GameWindow gameWindow, int width, int height, String title) {
+		setup(gameWindow, title);
+		
+		setSize(width, height);
+		setResizable(false);
+	}
+	
+	private void setup(GameWindow gameWindow, String title) {
+		this.gameWindow = gameWindow;
+		add(gameWindow);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle(title);
 	}
 	
 	public void setCursorHidden(boolean hideCursor){ 			
