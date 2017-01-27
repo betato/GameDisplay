@@ -26,6 +26,7 @@ public abstract class GameWindow extends Canvas{
 		addMouseWheelListener(inputListener);
 		frame.addWindowListener(frameListener);
 		frame.addWindowFocusListener(frameListener);
+		frame.addComponentListener(frameListener);
 		
 		frame.setVisible(true);
 		gameLoop.run(this);
@@ -43,6 +44,7 @@ public abstract class GameWindow extends Canvas{
 	public void update() {
 		onUpdate(inputListener);
 		inputListener.clear();
+		frameListener.clear();
 	}
 	
 	public void render() {

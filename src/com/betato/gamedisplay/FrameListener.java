@@ -1,30 +1,66 @@
 package com.betato.gamedisplay;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 
-public class FrameListener implements WindowListener, WindowFocusListener {
+public class FrameListener implements WindowListener, WindowFocusListener, ComponentListener {
 	
-	public boolean windowFocused = true;
-	public boolean windowClosing = false;
-	public boolean windowClosed = false;
+	public boolean windowResized = false;
+	public boolean windowMoved = false;
+	
+	public boolean windowGainedFocus = false;
+	public boolean windowLostFocus = false;
+	
 	public boolean windowMinimized = false;
-	public boolean windowActive = true;
+	public boolean windowMaximized = false;
+	
+	public boolean windowActivated = false;
+	public boolean windowDeactivated = false;
+	
+	public boolean windowHidden = false;
+	public boolean windowShown = false;
+	
+	public boolean windowOpened = false;
+	public boolean windowClosed = false;
+	public boolean windowClosing = false;
+	
+	public void clear() {
+		windowResized = false;
+		windowMoved = false;
+		
+		windowGainedFocus = false;
+		windowLostFocus = false;
+		
+		windowMinimized = false;
+		windowMaximized = false;
+		
+		windowActivated = false;
+		windowDeactivated = false;
+		
+		windowHidden = false;
+		windowShown = false;
+		
+		windowOpened = false;
+		windowClosed = false;
+		windowClosing = false;
+	}
 	
 	@Override
 	public void windowGainedFocus(WindowEvent arg0) {
-		windowFocused = true;
+		windowGainedFocus = true;
 	}
 
 	@Override
 	public void windowLostFocus(WindowEvent arg0) {
-		windowFocused = false;
+		windowLostFocus = false;
 	}
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		windowActive = true;
+		windowActivated = true;
 	}
 
 	@Override
@@ -39,12 +75,12 @@ public class FrameListener implements WindowListener, WindowFocusListener {
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		windowActive = false;
+		windowDeactivated = false;
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		windowMinimized = false;
+		windowMaximized = false;
 	}
 
 	@Override
@@ -54,6 +90,26 @@ public class FrameListener implements WindowListener, WindowFocusListener {
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
-		windowFocused = true;
+		windowOpened = true;
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		windowHidden = true;
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		windowMoved = true;
+	}
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+		windowResized = true;
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		windowShown = false;
 	}
 }
