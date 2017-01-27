@@ -12,9 +12,11 @@ public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private GameWindow gameWindow;
+	private int defaultWidth;
+	private int defaultHeight;
 	
 	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize, boolean resizable, boolean fullscreen, boolean hideCursor) {
-		setup(gameWindow, title);
+		setup(gameWindow, title, width, height);
 		
 		if (useContentSize) {
 			setContentSize(width, height);
@@ -33,18 +35,40 @@ public class Frame extends JFrame{
 	}
 	
 	public Frame(GameWindow gameWindow, int width, int height, String title) {
-		setup(gameWindow, title);
+		setup(gameWindow, title, width, height);;
 		
 		setSize(width, height);
 		setResizable(false);
 	}
 	
-	private void setup(GameWindow gameWindow, String title) {
+	private void setup(GameWindow gameWindow, String title, int width, int height) {
+		defaultWidth = width;
+		defaultHeight = height;
+		
 		this.gameWindow = gameWindow;
 		add(gameWindow);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);
+	}
+	
+	public void setFullscreen(boolean fullscreen) {
+		if (isUndecorated() == fullscreen) {
+			return;
+		}
+		// Dispose window to decorate
+		dispose();
+		setUndecorated(fullscreen);
+		if (fullscreen) {
+			// Set window full screen
+			setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		} else {
+			// Set window to defaults
+			setSize(defaultHeight, defaultWidth);
+		}
+		// Show window
+		add(gameWindow);
+		setVisible(true);
 	}
 	
 	public void setCursorHidden(boolean hideCursor){ 			
