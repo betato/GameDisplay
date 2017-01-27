@@ -21,12 +21,13 @@ public class TestGame extends GameWindow{
 	boolean keyState;
 	
 	public TestGame() {
-		start(new GameLoop(60, 120), new Frame(300, 300, "Title", false, false, false));
+		start(new GameLoop(60, 120), new Frame(this, 300, 300, "Title", false, false, false));
 	}
 	
 	@Override
 	public void onInit() {
 		acc = 100;
+		frame.setContentSize(300, 300);
 	}
 
 	@Override

@@ -17,7 +17,6 @@ public abstract class GameWindow extends Canvas{
 		this.gameLoop = gameLoop;
 		this.frame = frame;
 		
-		frame.add(this);
 		inputListener = new InputListener();
 		addKeyListener(inputListener);
 		addMouseListener(inputListener);

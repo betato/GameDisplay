@@ -11,7 +11,12 @@ import javax.swing.JFrame;
 public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	public Frame(int width, int height, String title, boolean resizable, boolean fullscreen, boolean hideCursor) {
+	private GameWindow gameWindow;
+	
+	public Frame(GameWindow gameWindow, int width, int height, String title, boolean resizable, boolean fullscreen, boolean hideCursor) {
+		this.gameWindow = gameWindow;
+		add(gameWindow);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);
 		
@@ -44,8 +49,5 @@ public class Frame extends JFrame{
 		// Set content size and pack
 		getContentPane().setPreferredSize(new Dimension(width, height));
 		pack();
-		// Update default size
-		width = getWidth();
-		height = getHeight();
 	}
 }
