@@ -8,6 +8,8 @@ import java.awt.event.WindowListener;
 
 public class FrameListener implements WindowListener, WindowFocusListener, ComponentListener {
 	
+	GameWindow gameWindow;
+	
 	public boolean windowResized = false;
 	public boolean windowMoved = false;
 	
@@ -26,6 +28,10 @@ public class FrameListener implements WindowListener, WindowFocusListener, Compo
 	public boolean windowOpened = false;
 	public boolean windowClosed = false;
 	public boolean windowClosing = false;
+	
+	public FrameListener(GameWindow gameWindow) {
+		this.gameWindow = gameWindow;
+	}
 	
 	public void clear() {
 		windowResized = false;
@@ -71,6 +77,7 @@ public class FrameListener implements WindowListener, WindowFocusListener, Compo
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		windowClosing = true;
+		gameWindow.stop();
 	}
 
 	@Override

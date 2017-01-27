@@ -19,7 +19,7 @@ public abstract class GameWindow extends Canvas{
 		this.frame = frame;
 		
 		inputListener = new InputListener();
-		frameListener = new FrameListener();
+		frameListener = new FrameListener(this);
 		addKeyListener(inputListener);
 		addMouseListener(inputListener);
 		addMouseMotionListener(inputListener);
@@ -35,6 +35,7 @@ public abstract class GameWindow extends Canvas{
 	public void stop() {
 		gameLoop.running = false;
 		onExit();
+		System.exit(0);
 	}
 	
 	public void init() {
