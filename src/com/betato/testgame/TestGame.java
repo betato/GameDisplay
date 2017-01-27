@@ -19,9 +19,10 @@ public class TestGame extends GameWindow{
 	int timesUp = 0;
 	int timesDown = 0;
 	boolean keyState;
+	boolean fullscreen = true;
 	
 	public TestGame() {
-		start(new GameLoop(60, 120), new Frame(this, 300, 300, "Title", false, false, false));
+		start(new GameLoop(60, 120), new Frame(this, "Title", 300, 300, true, false, false, false));
 	}
 	
 	@Override
@@ -45,6 +46,10 @@ public class TestGame extends GameWindow{
 		if (inputListener.keyDown[65]) {
 			timesDown++;
 		}
+		if (inputListener.keyUp[90]) {
+			frame.setFullscreen(fullscreen);
+			fullscreen = !fullscreen;
+		}
 	}
 
 	@Override
@@ -59,8 +64,7 @@ public class TestGame extends GameWindow{
 
 	@Override
 	public void onExit() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("exiting");
 	}
 
 }
