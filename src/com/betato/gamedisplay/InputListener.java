@@ -8,13 +8,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, WindowListener, WindowFocusListener{
+public class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 	
 	public static final int NUM_KEYS = 223;
 	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons();
@@ -36,13 +33,6 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	public boolean mouseMoved = false;
 	public boolean mouseDragged = false;
 	public boolean mouseInsideWindow = true;
-	
-	// Window
-	public boolean windowFocused = true;
-	public boolean windowClosing = false;
-	public boolean windowClosed = false;
-	public boolean windowMinimized = false;
-	public boolean windowActive = true;
 	
 	public void clear() {
 		// Clear keyboard
@@ -129,51 +119,5 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	public void mouseReleased(MouseEvent e) {
 		mouseUp[e.getButton()] = true;
 		mouseState[e.getButton()] = false;
-	}
-
-	@Override
-	public void windowGainedFocus(WindowEvent arg0) {
-		windowFocused = true;
-	}
-
-	@Override
-	public void windowLostFocus(WindowEvent arg0) {
-		windowFocused = false;
-	}
-
-	@Override
-	public void windowActivated(WindowEvent arg0) {
-		windowActive = true;
-	}
-
-	@Override
-	public void windowClosed(WindowEvent arg0) {
-		windowClosed = true;
-	}
-
-	@Override
-	public void windowClosing(WindowEvent arg0) {
-		windowClosing = true;
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent arg0) {
-		windowActive = false;
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent arg0) {
-		windowMinimized = false;
-	}
-
-	@Override
-	public void windowIconified(WindowEvent arg0) {
-		windowMinimized = true;
-	}
-
-	@Override
-	public void windowOpened(WindowEvent arg0) {
-		windowFocused = true;
-	}
-	
+	}	
 }
