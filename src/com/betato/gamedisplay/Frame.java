@@ -35,7 +35,7 @@ public class Frame extends JFrame{
 	}
 	
 	public Frame(GameWindow gameWindow, int width, int height, String title) {
-		setup(gameWindow, title, width, height);;
+		setup(gameWindow, title, width, height);
 		
 		setSize(width, height);
 		setResizable(false);

@@ -11,8 +11,8 @@ public abstract class GameWindow extends Canvas{
 	private InputListener inputListener;
 	private FrameListener frameListener;
 	private int frameBuffers = 2;
-	public Frame frame;
 	
+	public Frame frame;
 	public int fps, ups = 0;
 	
 	public void start(GameLoop gameLoop, Frame frame, int frameBuffers) {
@@ -35,6 +35,7 @@ public abstract class GameWindow extends Canvas{
 		frame.addComponentListener(frameListener);
 		
 		frame.setVisible(true);
+		onInit();
 		gameLoop.run(this);
 	}
 	
@@ -42,10 +43,6 @@ public abstract class GameWindow extends Canvas{
 		gameLoop.running = false;
 		onExit();
 		System.exit(0);
-	}
-	
-	public void init() {
-		onInit();
 	}
 	
 	public void update() {

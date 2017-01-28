@@ -26,8 +26,6 @@ public class GameLoop {
 		int framecount = 0;
 		int updatecount = 0;
 		
-		game.init();
-		
 		while (running) {
 			// Get current time
 			long currentTime = System.nanoTime();
