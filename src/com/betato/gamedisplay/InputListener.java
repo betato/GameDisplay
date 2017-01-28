@@ -8,8 +8,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 	
@@ -17,13 +17,13 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons() + 1;
 	
 	// Keyboard
-	public Queue<KeyEvent> keyPresses = new ArrayDeque<KeyEvent>();
+	public Queue<KeyEvent> keyPresses = new ConcurrentLinkedQueue<KeyEvent>();
 	public boolean[] keyState = new boolean[NUM_KEYS];
 	public boolean[] keyDown = new boolean[NUM_KEYS];
 	public boolean[] keyUp = new boolean[NUM_KEYS];
 	
 	// Mouse
-	public Queue<MouseEvent> mouseClicks = new ArrayDeque<MouseEvent>();
+	public Queue<MouseEvent> mouseClicks = new ConcurrentLinkedQueue<MouseEvent>();
 	public int mouseX;
 	public int mouseY;
 	public int mouseWheel;
