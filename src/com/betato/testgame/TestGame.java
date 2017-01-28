@@ -43,13 +43,13 @@ public class TestGame extends GameWindow{
 		}
 		
 		keyState = inputListener.keyState[65];
-		if (inputListener.keyUp[65]) {
+		if (inputListener.keyUp[InputListener.A]) {
 			timesUp++;
 		}
-		if (inputListener.keyDown[65]) {
+		if (inputListener.keyDown[InputListener.A]) {
 			timesDown++;
 		}
-		if (inputListener.keyUp[90]) {
+		if (inputListener.keyUp[InputListener.Z]) {
 			frame.setFullscreen(fullscreen);
 			fullscreen = !fullscreen;
 		}
