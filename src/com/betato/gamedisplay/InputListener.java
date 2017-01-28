@@ -17,13 +17,13 @@ public class InputListener implements KeyListener, MouseListener, MouseMotionLis
 	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons();
 	
 	// Keyboard
-	Queue<KeyEvent> keyPresses = new ArrayDeque<KeyEvent>();
+	public Queue<KeyEvent> keyPresses = new ArrayDeque<KeyEvent>();
 	public boolean[] keyState = new boolean[NUM_KEYS];
 	public boolean[] keyDown = new boolean[NUM_KEYS];
 	public boolean[] keyUp = new boolean[NUM_KEYS];
 	
 	// Mouse
-	Queue<MouseEvent> mouseClicks = new ArrayDeque<MouseEvent>();
+	public Queue<MouseEvent> mouseClicks = new ArrayDeque<MouseEvent>();
 	public int mouseX;
 	public int mouseY;
 	public int mouseWheel;

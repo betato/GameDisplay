@@ -2,6 +2,7 @@ package com.betato.testgame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import com.betato.gamedisplay.Frame;
 import com.betato.gamedisplay.FrameListener;
@@ -51,6 +52,9 @@ public class TestGame extends GameWindow{
 		if (inputListener.keyUp[90]) {
 			frame.setFullscreen(fullscreen);
 			fullscreen = !fullscreen;
+		}
+		for(KeyEvent e : inputListener.keyPresses) { 
+			  System.out.println(e.getKeyChar()); 
 		}
 	}
 
