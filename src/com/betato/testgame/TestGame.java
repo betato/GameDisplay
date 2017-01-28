@@ -3,6 +3,7 @@ package com.betato.testgame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import com.betato.gamedisplay.Frame;
 import com.betato.gamedisplay.FrameListener;
@@ -43,13 +44,13 @@ public class TestGame extends GameWindow{
 		}
 		
 		keyState = inputListener.keyState[65];
-		if (inputListener.keyUp[InputListener.A]) {
+		if (inputListener.keyUp[KeyEvent.VK_A]) {
 			timesUp++;
 		}
-		if (inputListener.keyDown[InputListener.A]) {
+		if (inputListener.keyDown[KeyEvent.VK_A]) {
 			timesDown++;
 		}
-		if (inputListener.keyUp[InputListener.Z]) {
+		if (inputListener.keyUp[KeyEvent.VK_Z]) {
 			frame.setFullscreen(fullscreen);
 			fullscreen = !fullscreen;
 		}
