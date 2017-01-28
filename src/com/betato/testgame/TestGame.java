@@ -57,6 +57,9 @@ public class TestGame extends GameWindow{
 		for(KeyEvent e : inputListener.keyPresses) { 
 			  System.out.println(e.getKeyChar()); 
 		}
+		for(MouseEvent e : inputListener.mouseClicks) { 
+			  System.out.println(e.getButton()); 
+		}
 	}
 
 	@Override

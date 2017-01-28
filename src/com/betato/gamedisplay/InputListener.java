@@ -14,7 +14,7 @@ import java.util.Queue;
 public class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 	
 	public static final int NUM_KEYS = 526;
-	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons();
+	public static final int NUM_BUTTONS = MouseInfo.getNumberOfButtons() + 1;
 	
 	// Keyboard
 	public Queue<KeyEvent> keyPresses = new ArrayDeque<KeyEvent>();
