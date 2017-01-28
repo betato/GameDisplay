@@ -10,15 +10,19 @@ public abstract class GameWindow extends Canvas{
 	private GameLoop gameLoop;
 	private InputListener inputListener;
 	private FrameListener frameListener;
-	private int frameBuffers;
+	private int frameBuffers = 2;
 	public Frame frame;
 	
 	public int fps, ups = 0;
 	
 	public void start(GameLoop gameLoop, Frame frame, int frameBuffers) {
+		this.frameBuffers = frameBuffers;
+		start(gameLoop, frame);
+	}
+	
+	public void start(GameLoop gameLoop, Frame frame) {
 		this.gameLoop = gameLoop;
 		this.frame = frame;
-		this.frameBuffers = frameBuffers;
 		
 		inputListener = new InputListener();
 		frameListener = new FrameListener(this);

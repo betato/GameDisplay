@@ -24,7 +24,7 @@ public class TestGame extends GameWindow{
 	
 	public TestGame() {
 		Frame frame = new Frame(this, "Title", 300, 300, true, false, false, false);
-		start(new GameLoop(60, 120), frame, 2);
+		start(new GameLoop(60, 120), frame);
 	}
 	
 	@Override
