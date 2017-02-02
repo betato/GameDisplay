@@ -46,7 +46,7 @@ public abstract class GameWindow extends Canvas{
 	}
 	
 	public void update() {
-		onUpdate(inputListener, frameListener);
+		onUpdate(inputListener, frameListener, gameLoop.deltaUps);
 		inputListener.clear();
 		frameListener.clear();
 	}
@@ -72,7 +72,7 @@ public abstract class GameWindow extends Canvas{
 	abstract public void onInit();
 
 	// Called on update
-	abstract public void onUpdate(InputListener inputListener, FrameListener frameListener);
+	abstract public void onUpdate(InputListener inputListener, FrameListener frameListener, long delta);
 
 	// Called on render
 	abstract public void onRender(Graphics g);

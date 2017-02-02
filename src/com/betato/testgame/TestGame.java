@@ -36,7 +36,7 @@ public class TestGame extends GameWindow{
 	}
 
 	@Override
-	public void onUpdate(InputListener inputListener, FrameListener frameListener) {
+	public void onUpdate(InputListener inputListener, FrameListener frameListener, long delta) {
 		if (acc < 9999){
 			acc++;
 		} else {

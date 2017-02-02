@@ -8,6 +8,7 @@ public class GameLoop {
 	private int nanoUps = 1000000000 / targetUps;
 	
 	public boolean running = true;
+	public long deltaUps = 0;
 	
 	public GameLoop(int targetFps, int targetUps) {
 		this.targetFps = targetFps;
@@ -21,7 +22,6 @@ public class GameLoop {
 		
 		long startTime = System.nanoTime();
 		long deltaFps = 0;
-		long deltaUps = 0;
 		long deltaDisplay = 0;
 		int framecount = 0;
 		int updatecount = 0;
