@@ -12,8 +12,8 @@ public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private GameWindow gameWindow;
-	private int defaultWidth;
-	private int defaultHeight;
+	private int lastWidth;
+	private int lastHeight;
 	
 	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize, boolean resizable, boolean fullscreen, boolean hideCursor) {
 		setup(gameWindow, title, width, height);
@@ -42,8 +42,8 @@ public class Frame extends JFrame{
 	}
 	
 	private void setup(GameWindow gameWindow, String title, int width, int height) {
-		defaultWidth = width;
-		defaultHeight = height;
+		lastWidth = width;
+		lastHeight = height;
 		
 		this.gameWindow = gameWindow;
 		add(gameWindow);
@@ -56,18 +56,24 @@ public class Frame extends JFrame{
 		if (isUndecorated() == fullscreen) {
 			return;
 		}
+		// Store size before full screen
+		if (fullscreen){
+			lastWidth = getWidth();
+			lastHeight = getHeight();
+		}
 		// Dispose window to decorate
 		dispose();
 		setUndecorated(fullscreen);
 		if (fullscreen) {
 			// Set window full screen
 			setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+			add(gameWindow);
 		} else {
 			// Set window to defaults
-			setSize(defaultHeight, defaultWidth);
+			add(gameWindow);
+			setSize(lastWidth, lastHeight);
 		}
 		// Show window
-		add(gameWindow);
 		setVisible(true);
 	}
 	
