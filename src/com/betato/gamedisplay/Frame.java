@@ -12,7 +12,9 @@ public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize, boolean resizable, boolean hideCursor) {
-		setup(gameWindow, title, width, height);
+		add(gameWindow);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setTitle(title);
 		
 		if (useContentSize) {
 			setContentSize(width, height);
@@ -27,18 +29,8 @@ public class Frame extends JFrame{
 		}
 	}
 	
-	public Frame(GameWindow gameWindow, int width, int height, String title) {
-		setup(gameWindow, title, width, height);
-		
-		setSize(width, height);
-		setResizable(false);
-	}
-	
-	private void setup(GameWindow gameWindow, String title, int width, int height) {
-		add(gameWindow);
-		
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setTitle(title);
+	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize) {
+		this(gameWindow, title, width, height, useContentSize, false, false);
 	}
 	
 	public void setCursorHidden(boolean hideCursor){ 			

@@ -24,7 +24,7 @@ public class TestGame extends GameWindow{
 	boolean keyState;
 	
 	public TestGame() {
-		Frame frame = new Frame(this, "Title", 300, 300, true, false, false);
+		Frame frame = new Frame(this, "Title", 300, 300, true);
 		start(new GameLoop(60, 120), frame);
 	}
 	
