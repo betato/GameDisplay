@@ -22,10 +22,9 @@ public class TestGame extends GameWindow{
 	int timesUp = 0;
 	int timesDown = 0;
 	boolean keyState;
-	boolean fullscreen = true;
 	
 	public TestGame() {
-		Frame frame = new Frame(this, "Title", 300, 300, true, false, false, false);
+		Frame frame = new Frame(this, "Title", 300, 300, true, false, false);
 		start(new GameLoop(60, 120), frame);
 	}
 	
@@ -49,10 +48,6 @@ public class TestGame extends GameWindow{
 		}
 		if (inputListener.keyDown[KeyEvent.VK_A]) {
 			timesDown++;
-		}
-		if (inputListener.keyUp[KeyEvent.VK_Z]) {
-			frame.setFullscreen(fullscreen);
-			fullscreen = !fullscreen;
 		}
 		for(KeyEvent e : inputListener.keyPresses) { 
 			  System.out.println(e.getKeyChar()); 
