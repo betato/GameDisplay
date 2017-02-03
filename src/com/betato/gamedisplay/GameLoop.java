@@ -1,31 +1,41 @@
 package com.betato.gamedisplay;
 
+/**
+ * A game loop to run a GameWindow at the specified frame and update rate.
+ */
 public class GameLoop {
-		
+
 	private int targetFps = 60;
 	private int nanoFps = 1000000000 / targetFps;
 	private int targetUps = 60;
 	private int nanoUps = 1000000000 / targetUps;
-	
+
 	public boolean running = true;
 	public long deltaUps = 0;
-	
+
+	/**
+	 * Creates a new GameLoop with the specified frame rate and update rate.
+	 * 
+	 * @param targetFps
+	 *            The frame rate for the GameWindow in frames per second
+	 * @param targetUps
+	 *            The update rate for the GameWindow in updates per second
+	 */
 	public GameLoop(int targetFps, int targetUps) {
 		this.targetFps = targetFps;
 		this.targetUps = targetUps;
 		nanoFps = 1000000000 / targetFps;
 		nanoUps = 1000000000 / targetUps;
 	}
-	
-	// Runs the GameLoop
-	public void run(GameWindow game) {
-		
+
+	void run(GameWindow game) {
+
 		long startTime = System.nanoTime();
 		long deltaFps = 0;
 		long deltaDisplay = 0;
 		int framecount = 0;
 		int updatecount = 0;
-		
+
 		while (running) {
 			// Get current time
 			long currentTime = System.nanoTime();
