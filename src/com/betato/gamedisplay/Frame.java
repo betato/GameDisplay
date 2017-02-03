@@ -40,10 +40,6 @@ public class Frame extends JFrame {
 		add(gameWindow);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setTitle(title);
-		//
-		JFrame jFrame = new JFrame("");
-		jFrame.setVisible(true);
-		//
 		if (useContentSize) {
 			setContentSize(width, height);
 		} else {
@@ -77,7 +73,7 @@ public class Frame extends JFrame {
 	}
 
 	/**
-	 * Sets the mouse cursor to be invisible
+	 * Sets the mouse cursor to be invisible.
 	 * 
 	 * @param hideCursor
 	 *            Whether or not to use an invisible cursor
@@ -97,7 +93,7 @@ public class Frame extends JFrame {
 	}
 
 	/**
-	 * Sets the size of the frame based on the specified inner GameWindow size
+	 * Sets the size of the frame based on the specified inner GameWindow size.
 	 * 
 	 * @param width
 	 *            The interior frame width
