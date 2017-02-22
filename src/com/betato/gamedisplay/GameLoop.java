@@ -10,8 +10,7 @@ public class GameLoop {
 	private int targetUps = 60;
 	private int nanoUps = 1000000000 / targetUps;
 
-	public boolean running = true;
-	public long deltaUps = 0;
+	private boolean running = true;
 
 	/**
 	 * Creates a new GameLoop with the specified frame rate and update rate.
@@ -28,10 +27,11 @@ public class GameLoop {
 		nanoUps = 1000000000 / targetUps;
 	}
 
-	void run(GameWindow game) {
+	protected void run(GameWindow game) {
 
 		long startTime = System.nanoTime();
 		long deltaFps = 0;
+		long deltaUps = 0;
 		long deltaDisplay = 0;
 		int framecount = 0;
 		int updatecount = 0;
@@ -58,7 +58,7 @@ public class GameLoop {
 			// Update if target time has been reached
 			if (deltaUps >= nanoUps) {
 				// Update
-				game.update();
+				game.update(deltaUps);
 				updatecount++;
 				deltaUps = 0;
 			}
@@ -71,5 +71,9 @@ public class GameLoop {
 				deltaDisplay = 0;
 			}
 		}
+	}
+	
+	protected void stop() {
+		running = false;
 	}
 }

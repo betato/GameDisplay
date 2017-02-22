@@ -71,13 +71,13 @@ public abstract class GameWindow extends Canvas {
 	 * method.
 	 */
 	public void stop() {
-		gameLoop.running = false;
+		gameLoop.stop();
 		onExit();
 		System.exit(0);
 	}
 
-	public void update() {
-		onUpdate(inputListener, frameListener, gameLoop.deltaUps);
+	public void update(long deltaUps) {
+		onUpdate(inputListener, frameListener, deltaUps);
 		inputListener.clear();
 		frameListener.clear();
 	}
