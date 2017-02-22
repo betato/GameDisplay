@@ -17,8 +17,6 @@ public class Frame extends JFrame {
 	/**
 	 * Creates a new Frame.
 	 * 
-	 * @param gameWindow
-	 *            The gameWindow to add inside the frame
 	 * @param title
 	 *            The window title to display
 	 * @param width
@@ -31,8 +29,7 @@ public class Frame extends JFrame {
 	 *            Whether or not to hide the mouse cursor over the Frame
 	 * 
 	 */
-	public Frame(GameWindow gameWindow, String title, int width, int height, boolean resizable, boolean hideCursor) {
-		add(gameWindow);
+	public Frame(String title, int width, int height, boolean resizable, boolean hideCursor) {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setTitle(title);
 		setSize(width, height);
@@ -47,8 +44,6 @@ public class Frame extends JFrame {
 	/**
 	 * Creates a new Frame with fixed size and shown cursor.
 	 * 
-	 * @param gameWindow
-	 *            The gameWindow to add inside the frame
 	 * @param title
 	 *            The window title to display
 	 * @param width
@@ -56,8 +51,8 @@ public class Frame extends JFrame {
 	 * @param height
 	 *            The frame height
 	 */
-	public Frame(GameWindow gameWindow, String title, int width, int height) {
-		this(gameWindow, title, width, height, false, false);
+	public Frame(String title, int width, int height) {
+		this(title, width, height, false, false);
 	}
 
 	/**

@@ -48,6 +48,8 @@ public class GameWindow extends Canvas {
 		this.frame = frame;
 		this.frameBuffers = frameBuffers;
 		
+		frame.add(this);
+		
 		inputListener = new InputListener();
 		frameListener = new FrameListener(this);
 		
