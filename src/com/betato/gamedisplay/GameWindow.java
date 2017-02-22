@@ -5,15 +5,20 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 /**
- * A window for a game
+ * A window for a game to be run.
  */
-public abstract class GameWindow extends Canvas {
+public class GameWindow extends Canvas {
 
 	private static final long serialVersionUID = 1L;
 	private GameLoop gameLoop;
 	private InputListener inputListener;
 	private FrameListener frameListener;
-	private int frameBuffers = 2;
+	private int frameBuffers;
+
+	/**
+	 * The game to be run.
+	 */
+	public Game game;
 
 	/**
 	 * The frame which contains this GameWindow.
@@ -26,8 +31,10 @@ public abstract class GameWindow extends Canvas {
 	public int fps, ups = 0;
 
 	/**
-	 * Initializes listeners and starts GameLoop.
+	 * Creates a new GameLoop and initializes listeners.
 	 * 
+	 * @param game
+	 *            The game to be run
 	 * @param gameLoop
 	 *            The gameLoop to use with this GameWindow
 	 * @param frame
@@ -35,100 +42,78 @@ public abstract class GameWindow extends Canvas {
 	 * @param frameBuffers
 	 *            The amount of frame buffers to use for rendering
 	 */
-	public void start(GameLoop gameLoop, Frame frame, int frameBuffers) {
+	public GameWindow(Game game, GameLoop gameLoop, Frame frame, int frameBuffers) {
+		this.game = game;
+		this.gameLoop = gameLoop;
+		this.frame = frame;
 		this.frameBuffers = frameBuffers;
-		start(gameLoop, frame);
+		
+		inputListener = new InputListener();
+		frameListener = new FrameListener(this);
+		
+		addKeyListener(inputListener);
+		addMouseListener(inputListener);
+		addMouseMotionListener(inputListener);
+		addMouseWheelListener(inputListener);
+		
+		frame.addWindowListener(frameListener);
+		frame.addWindowFocusListener(frameListener);
+		frame.addComponentListener(frameListener);
+		
+		game.init();
 	}
 
 	/**
-	 * Initializes listeners and starts GameLoop.
+	 * Creates a new GameLoop and initializes listeners.
 	 * 
+	 * @param game
+	 *            The game to be run
 	 * @param gameLoop
 	 *            The gameLoop to use with this GameWindow
 	 * @param frame
 	 *            The frame to hold this GameWindow
 	 */
-	public void start(GameLoop gameLoop, Frame frame) {
-		this.gameLoop = gameLoop;
-		this.frame = frame;
-		inputListener = new InputListener();
-		frameListener = new FrameListener(this);
-		addKeyListener(inputListener);
-		addMouseListener(inputListener);
-		addMouseMotionListener(inputListener);
-		addMouseWheelListener(inputListener);
-		frame.addWindowListener(frameListener);
-		frame.addWindowFocusListener(frameListener);
-		frame.addComponentListener(frameListener);
-
+	public GameWindow(Game game, GameLoop gameLoop, Frame frame) {
+		this(game, gameLoop, frame, 2);
+	}
+	
+	/**
+	 * Shows window and starts gameLoop.
+	 */
+	public void start() {
 		frame.setVisible(true);
-		onInit();
 		gameLoop.run(this);
 	}
 
 	/**
-	 * Stops the GameLoop and exits the program. Closing the window calls this
-	 * method.
+	 * Stops the GameLoop and exits the program. Closing the window will do this automatically.
 	 */
 	public void stop() {
 		gameLoop.stop();
-		onExit();
+		game.exit();
 		System.exit(0);
 	}
 
-	public void update(long deltaUps) {
-		onUpdate(inputListener, frameListener, deltaUps);
+	protected void update(long deltaUps) {
+		game.update(inputListener, frameListener, deltaUps);
 		inputListener.clear();
 		frameListener.clear();
 	}
 
-	public void render() {
+	protected void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
 			this.createBufferStrategy(frameBuffers);
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		onRender(g);
+		game.render(g);
 		g.dispose();
 		bs.show();
 	}
 
-	public void updateFps(int fps, int ups) {
+	protected void updateFps(int fps, int ups) {
 		this.fps = fps;
 		this.ups = ups;
 	}
-
-	/**
-	 * Called when GameWindow has initialized, before the game loop starts.
-	 */
-	abstract public void onInit();
-
-	/**
-	 * Called as specified based on the GameLoop targetUps.
-	 * 
-	 * @param gameLoop
-	 *            The inputListener for this GameWindow, containing mouse and
-	 *            keyboard events that have occurred since the last update
-	 * @param frameListener
-	 *            The frameListener for this GameWindow, containing frame events
-	 *            that have occurred since the last update
-	 * @param delta
-	 *            The amount of time passed since the last update in nanoseconds
-	 */
-	abstract public void onUpdate(InputListener inputListener, FrameListener frameListener, long delta);
-
-	/**
-	 * Called as specified based on the GameLoop targetFps.
-	 * 
-	 * @param g
-	 *            The graphics to draw to the GameWindow with.
-	 */
-	abstract public void onRender(Graphics g);
-
-	/**
-	 * Called after the game loop stops when stop is called or when window is
-	 * closed.
-	 */
-	abstract public void onExit();
 }
