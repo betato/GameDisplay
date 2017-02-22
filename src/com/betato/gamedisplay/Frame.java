@@ -9,8 +9,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 /**
- * An extended JFrame for use with a GameWindow. Supports setting content size
- * and cursor hiding.
+ * An extended JFrame for use with a GameWindow. Supports setting content size and cursor hiding.
  */
 public class Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -26,25 +25,17 @@ public class Frame extends JFrame {
 	 *            The frame width
 	 * @param height
 	 *            The frame height
-	 * @param useContentSize
-	 *            If true, the inside of the frame will be set to the specified
-	 *            dimensions, if false, the outside will be set
 	 * @param resizable
 	 *            Whether or not the Frame will be manually resizable
 	 * @param hidecursor
 	 *            Whether or not to hide the mouse cursor over the Frame
 	 * 
 	 */
-	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize, boolean resizable,
-			boolean hideCursor) {
+	public Frame(GameWindow gameWindow, String title, int width, int height, boolean resizable, boolean hideCursor) {
 		add(gameWindow);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setTitle(title);
-		if (useContentSize) {
-			setContentSize(width, height);
-		} else {
-			setSize(width, height);
-		}
+		setSize(width, height);
 
 		setResizable(resizable);
 
@@ -64,12 +55,9 @@ public class Frame extends JFrame {
 	 *            The frame width
 	 * @param height
 	 *            The frame height
-	 * @param useContentSize
-	 *            If true, the inside of the frame will be set to the specified
-	 *            dimensions, if false, the outside will be set
 	 */
-	public Frame(GameWindow gameWindow, String title, int width, int height, boolean useContentSize) {
-		this(gameWindow, title, width, height, useContentSize, false, false);
+	public Frame(GameWindow gameWindow, String title, int width, int height) {
+		this(gameWindow, title, width, height, false, false);
 	}
 
 	/**
@@ -82,8 +70,7 @@ public class Frame extends JFrame {
 		if (hideCursor) {
 			// Create a new blank cursor
 			BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-			Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0),
-					"blank cursor");
+			Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 			// Set the cursor
 			getContentPane().setCursor(blankCursor);
 		} else {
