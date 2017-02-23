@@ -27,7 +27,7 @@ public class GameLoop {
 		nanoUps = 1000000000 / targetUps;
 	}
 
-	protected void run(GameWindow game) {
+	protected void run(GameWindow gameWindow) {
 
 		long startTime = System.nanoTime();
 		long deltaFps = 0;
@@ -50,7 +50,7 @@ public class GameLoop {
 			// Render if target time has been reached
 			if (deltaFps >= nanoFps) {
 				// Render
-				game.render();
+				gameWindow.render();
 				framecount++;
 				deltaFps = 0;
 			}
@@ -58,14 +58,14 @@ public class GameLoop {
 			// Update if target time has been reached
 			if (deltaUps >= nanoUps) {
 				// Update
-				game.update(deltaUps);
+				gameWindow.update(deltaUps);
 				updatecount++;
 				deltaUps = 0;
 			}
 
 			// Update fps and ups if one second has passed
 			if (deltaDisplay >= 1000000000) {
-				game.updateFps(framecount, updatecount);
+				gameWindow.updateFps(framecount, updatecount);
 				framecount = 0;
 				updatecount = 0;
 				deltaDisplay = 0;

@@ -31,8 +31,12 @@ public interface Game {
 	 * 
 	 * @param g
 	 *            The graphics to draw to the GameWindow with.
+	 * @param fps
+	 *            The current frame rate of the GameWindow.
+	 * @param ups
+	 *            The current update frequency of the GameWindow.
 	 */
-	public void render(Graphics g);
+	public void render(Graphics g, int fps, int ups);
 
 	/**
 	 * Called after the game loop stops when stop is called or when window is closed.

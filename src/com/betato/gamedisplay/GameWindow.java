@@ -15,6 +15,9 @@ public class GameWindow extends Canvas {
 	private FrameListener frameListener;
 	private int frameBuffers;
 
+	private int fps = 0; 
+	private int ups = 0;
+	
 	/**
 	 * The game to be run.
 	 */
@@ -25,10 +28,6 @@ public class GameWindow extends Canvas {
 	 */
 	public Frame frame;
 
-	/**
-	 * The current frame rate and update rate, updated once per second.
-	 */
-	public int fps, ups = 0;
 
 	/**
 	 * Creates a new GameLoop and initializes listeners.
@@ -109,7 +108,7 @@ public class GameWindow extends Canvas {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		game.render(g);
+		game.render(g, fps, ups);
 		g.dispose();
 		bs.show();
 	}
