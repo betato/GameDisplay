@@ -87,7 +87,7 @@ public class GameWindow extends Canvas {
 	}
 
 	/**
-	 * Stops the GameLoop and exits the program. Closing the window will do this automatically.
+	 * Stops the GameLoop and exits the program. Closing the window or returning false for Game.running() will do this automatically.
 	 */
 	public void stop() {
 		gameLoop.stop();
@@ -96,9 +96,13 @@ public class GameWindow extends Canvas {
 	}
 
 	protected void update(long deltaUps) {
-		game.update(inputListener, frameListener, deltaUps);
-		inputListener.clear();
-		frameListener.clear();
+		if (game.running()) {
+			game.update(inputListener, frameListener, deltaUps);
+			inputListener.clear();
+			frameListener.clear();
+		} else {
+			stop();
+		}
 	}
 
 	protected void render() {

@@ -72,4 +72,9 @@ public class TestGame implements Game{
 		System.out.println("exiting");
 	}
 
+	@Override
+	public boolean running() {
+		return true;
+	}
+
 }

@@ -42,4 +42,9 @@ public interface Game {
 	 * Called after the game loop stops when stop is called or when window is closed.
 	 */
 	public void exit();
+	
+	/**
+	 * Checks if the game is still running. If false is returned, the game will exit.
+	 */
+	public boolean running();
 }
