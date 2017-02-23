@@ -7,15 +7,20 @@ import java.awt.event.MouseEvent;
 
 import com.betato.gamedisplay.Frame;
 import com.betato.gamedisplay.FrameListener;
+import com.betato.gamedisplay.Game;
 import com.betato.gamedisplay.GameLoop;
 import com.betato.gamedisplay.GameWindow;
 import com.betato.gamedisplay.InputListener;
 
-public class TestGame extends GameWindow{
-	private static final long serialVersionUID = 1L;
+public class TestGame implements Game{
 	
 	public static void main(String[] args) {
-		new TestGame();
+		Game game = new TestGame();
+		GameLoop loop = new GameLoop(60, 120);
+		Frame frame = new Frame("Title", 300, 300);
+		
+		GameWindow window = new GameWindow(game, loop, frame);
+		window.start();
 	}
 	
 	int acc;
@@ -23,19 +28,13 @@ public class TestGame extends GameWindow{
 	int timesDown = 0;
 	boolean keyState;
 	
-	public TestGame() {
-		Frame frame = new Frame(this, "Title", 300, 300, true);
-		start(new GameLoop(60, 120), frame);
-	}
-	
 	@Override
-	public void onInit() {
+	public void init() {
 		acc = 100;
-		frame.setContentSize(300, 300);
 	}
 
 	@Override
-	public void onUpdate(InputListener inputListener, FrameListener frameListener, long delta) {
+	public void update(InputListener inputListener, FrameListener frameListener, long delta) {
 		if (acc < 9999){
 			acc++;
 		} else {
@@ -58,7 +57,7 @@ public class TestGame extends GameWindow{
 	}
 
 	@Override
-	public void onRender(Graphics g) {
+	public void render(Graphics g, int fps, int ups) {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 300, 300);
 		g.setColor(Color.black);
@@ -69,7 +68,7 @@ public class TestGame extends GameWindow{
 	}
 
 	@Override
-	public void onExit() {
+	public void exit() {
 		System.out.println("exiting");
 	}
 
