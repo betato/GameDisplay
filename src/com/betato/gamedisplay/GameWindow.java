@@ -60,8 +60,6 @@ public class GameWindow extends Canvas {
 		frame.addWindowListener(frameListener);
 		frame.addWindowFocusListener(frameListener);
 		frame.addComponentListener(frameListener);
-		
-		game.init();
 	}
 
 	/**
@@ -83,6 +81,7 @@ public class GameWindow extends Canvas {
 	 */
 	public void start() {
 		frame.setVisible(true);
+		game.init(frame);
 		gameLoop.run(this);
 	}
 

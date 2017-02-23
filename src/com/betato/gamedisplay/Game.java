@@ -6,11 +6,14 @@ import java.awt.Graphics;
  * A game to be run inside a GameWindow with a Frame and GameLoop.
  */
 public interface Game {
-	
+
 	/**
 	 * Called when GameWindow has initialized, before the game loop starts.
+	 * 
+	 * @param frame
+	 *            A Frame reference to allow editing and resizing of the window
 	 */
-	public void init();
+	public void init(Frame frame);
 
 	/**
 	 * Called as specified based on the GameLoop targetUps.
@@ -42,7 +45,7 @@ public interface Game {
 	 * Called after the game loop stops when stop is called or when window is closed.
 	 */
 	public void exit();
-	
+
 	/**
 	 * Checks if the game is still running. If false is returned, the game will exit.
 	 */

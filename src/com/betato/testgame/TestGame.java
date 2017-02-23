@@ -23,13 +23,17 @@ public class TestGame implements Game{
 		window.start();
 	}
 	
+	public Frame frame;
+	
 	int acc;
 	int timesUp = 0;
 	int timesDown = 0;
 	boolean keyState;
 	
 	@Override
-	public void init() {
+	public void init(Frame frame) {
+		this.frame = frame;
+		frame.setContentSize(300, 300);
 		acc = 100;
 	}
 
